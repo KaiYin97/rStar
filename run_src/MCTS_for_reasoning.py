@@ -310,11 +310,13 @@ class Generator:
         re_subanswer_list, value_list = [], []
 
         user_question_context, _ = split_user_question(user_question)
-
+        ## 只会对最后一个子问题就行re-answer。
+        ## 可以考虑对subquestion-subanswer这类的action优化一下 --> subq-subq together, subq-suba choose which one to re-answer, self-re-evalue 
         last_subquestion_id = int(sorted(solution_trace.keys())[-1])
         last_subquestion = solution_trace[last_subquestion_id]["subquestion"]
         
         #! few shot cot
+        ## 这里其实就是用的COT这个action
         question = (
             f"{user_question_context} {last_subquestion}"
             if not paraphrased
