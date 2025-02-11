@@ -379,6 +379,7 @@ class Generator:
 
     def generate_rephrased_user_question(self, user_question: str):
         rephrased_user_question_list = []
+        ## 这里是把问题里面的condition列出来-->自己的可能需要列出可能的步骤？
         io_input = self.rephrasing_prompt_template
         io_input += "\n\n"
         io_input += "Original Question: " + user_question + "\n"
