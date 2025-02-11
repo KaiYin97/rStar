@@ -337,6 +337,7 @@ class Generator:
         value_list.append(likelihood)
 
         #! generate potential answer to the user question
+        # 还是跟subq-suba那边类似的操作，根据前面每个subq和suba，完整解决这个问题
         potential_answers_list: List[List[str]] = []
         if self.enable_potential_score:
             solution_trace_copy = deepcopy(solution_trace)
