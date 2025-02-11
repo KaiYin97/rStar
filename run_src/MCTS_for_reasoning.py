@@ -313,7 +313,7 @@ class Generator:
 
         last_subquestion_id = int(sorted(solution_trace.keys())[-1])
         last_subquestion = solution_trace[last_subquestion_id]["subquestion"]
-
+        
         #! few shot cot
         question = (
             f"{user_question_context} {last_subquestion}"
