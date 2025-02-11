@@ -295,7 +295,9 @@ class Generator:
                     )
         else:
             potential_answers_list = [None] * len(subquestion_list)
-
+        ## 先对问题拆解，得到每个子问题，以及每个子问题对应的答案；然后然后根据子问题的答案，得到这个问题最终的答案（就是potential_answers_list）
+        ## 这里是把子问题都一下子全部丢给了LLM，然后得到每个子问题的答案，或许可以每个子问题调用一次LLM得到解？
+        ## 所以这里是采取subq-suba的action，采取这个action后，其实在LLM这一侧是做了很多工作的，然后才能得到最后的解（也就是state，或者最后的Node），只不过是把这些action都抽象到了一起去
         return subquestion_list, subanswer_list, value_list, potential_answers_list
 
     def generate_re_subanswers(
