@@ -243,6 +243,7 @@ class Generator:
 
         for i, cleaned_io_output_group in enumerate(cleaned_io_output_list):
             try:
+                ## 这里还需要再看下，涉及到计算value了
                 most_likely_answer, likelihood = self._get_most_likely_answer(cleaned_io_output_group)
             except Exception as e:
                 raise GeneratorError(
