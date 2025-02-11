@@ -132,6 +132,7 @@ class Generator:
     def _fewshot_cot_answer_question(self, question: str, paraphrased: bool, num_return: int, hint: str = None):
         fewshot_cot_prompt = self.fewshot_cot_prompt if not paraphrased else self.fewshot_cot_prompt_rephrased
         question += "\n\n" + hint if hint is not None else ""
+        ## 其实这块就是在采取direct action时，往LLM中的输入【固定的instruction + some demos + user query】
         io_input = self.fewshot_cot_config["prompt_template"].format(examples=fewshot_cot_prompt, instruction=question)
         io_output_list = self.io.generate(
             io_input,
