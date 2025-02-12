@@ -135,6 +135,7 @@ class Generator:
         ## 其实这块就是在采取direct action时，往LLM中的输入【固定的instruction + some demos + user query】
         ## 这块其实就是COT，prompt template直接使用自己之前做的那个，step1 use which tool; step2 dep; step 3 parameter
         io_input = self.fewshot_cot_config["prompt_template"].format(examples=fewshot_cot_prompt, instruction=question)
+        ## 这里会对于同一个输入，并行地生成num_return个不同的回答
         io_output_list = self.io.generate(
             io_input,
             num_return=num_return,
