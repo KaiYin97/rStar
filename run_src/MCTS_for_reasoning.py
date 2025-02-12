@@ -126,7 +126,7 @@ class Generator:
                 io_output_list
             )
             assert confidence > 0
-
+        # 返回值的长度就都是1 
         return most_confident_answer_full_completion, confidence
 
     def _fewshot_cot_answer_question(self, question: str, paraphrased: bool, num_return: int, hint: str = None):
