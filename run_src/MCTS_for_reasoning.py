@@ -929,16 +929,20 @@ class Reasoning_MCTS_Node(MCTS_Node):
             raise ValueError("DIRECT_ANSWER node cannot create children!!")
         elif self.node_type is Node_Type.SUBQUESTION:
             # A1: Propose an one-step thought.
+            ## 如果有N个step，每个step会生成一个child node 
             if not self.disable_a1:
                 do_action_generate_ost_step(parent_is_subquestion=True)
 
             # A2: Propose the remaining thought steps
+            ## 只会生成一个child node 
             do_action_generate_direct_answers()
 
             # A3: Propose next sub-question along with its answer.
+            ## 假如生成了N个sub-q以及对应的sub-a, 则会生成N个child node 
             do_action_generate_subquestions()
 
             # A4: Answer the sub-question again.
+            ## 其实只会生成一个child node 
             do_action_generate_re_subanswers()
         elif self.node_type is Node_Type.RE_SUBANSWER:
             # A1: Propose an one-step thought.
